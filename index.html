@@ -1,0 +1,1219 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>CÉLA Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="CÉLA — minimalistyczne bluzy z kapturem z ciężkiej bawełny organicznej. Wear the quiet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: editorial fashion house — full-bleed photography, wide uppercase display type, generous off-white space, celadon as the one brand colour. */
+:root{
+  --celadon:#BAC5B9;      /* jasny seledyn — kolor marki */
+  --celadon-deep:#A7B4A6;
+  --mint:#6F7F70;         /* miętowa zieleń — akcenty */
+  --paper:#EEEBE6;        /* off-white — tła */
+  --sand:#DAD4CB;         /* jasny beż */
+  --sand-deep:#C9C1B5;
+  --ink:#24221F;          /* czerń */
+  --graphite:#57534D;     /* grafit */
+  --muted:#7F7A73;
+  --line:rgba(36,34,31,.12);
+  --surface:#F7F5F1;
+  --scrim:rgba(238,235,230,.0);
+  --f-display:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body:"Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --gutter:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  --ease:cubic-bezier(.2,.7,.1,1);
+  --max:1440px;
+  color-scheme:light; /* marka ma jeden, jasny wygląd — niezależnie od trybu ciemnego systemu */
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
+a{color:inherit}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.display{font-family:var(--f-display);font-stretch:125%;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.92;text-wrap:balance}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 30px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font-family:var(--f-display);font-stretch:112%;font-weight:600;font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;position:relative;overflow:hidden;transition:color .35s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;background:var(--celadon);transform:translateY(101%);transition:transform .45s var(--ease)}
+.btn>span{position:relative}
+.btn:hover{color:#24221F}
+.btn:hover::before{transform:translateY(0)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.light{background:#EEEBE6;color:#24221F;border-color:#EEEBE6}
+.btn.full{width:100%}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.link{background:none;border:0;padding:0;cursor:pointer;text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-size:100% 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .35s var(--ease)}
+.link:hover{background-size:0 1px;background-position:100% 100%}
+
+/* announcement + header */
+.announce{background:linear-gradient(to bottom,var(--celadon),color-mix(in srgb,var(--celadon) 35%,var(--paper)));color:var(--ink);text-align:center;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;padding-block:9px;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.site.scrolled{border-bottom-color:var(--line)}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:68px}
+.nav-l,.nav-r{display:flex;gap:28px;align-items:center}
+.nav-r{justify-content:flex-end}
+.nav a.nl{font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;font-weight:500}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo svg{width:26px;height:26px}
+.logo b{font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:22px;letter-spacing:.06em}
+.icon-btn{background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:8px;margin:-8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.icon-btn svg{width:20px;height:20px}
+.count{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:#BAC5B9;color:#24221F;font-family:var(--f-mono);font-size:11px;transition:transform .3s var(--ease)}
+.count.bump{transform:scale(1.35)}
+.burger{display:none}
+.sound{gap:10px}
+.eq{display:inline-flex;align-items:flex-end;gap:2px;height:14px;width:16px}
+.eq i{display:block;width:2px;height:3px;background:currentColor;transition:height .3s}
+.sound.on .eq i{animation:eq 1s ease-in-out infinite}
+.sound.on .eq i:nth-child(2){animation-delay:-.4s}.sound.on .eq i:nth-child(3){animation-delay:-.7s}.sound.on .eq i:nth-child(4){animation-delay:-.2s}
+@keyframes eq{0%,100%{height:3px}50%{height:14px}}
+.sound .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em}
+@media (max-width:520px){.sound .lbl{display:none}}
+.hero-sound{position:absolute;right:var(--gutter-r);bottom:24px;z-index:2;display:inline-flex;align-items:center;gap:10px;height:40px;padding:0 16px;border:1px solid rgba(36,34,31,.35);background:rgba(238,235,230,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#24221F;cursor:pointer;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:background .3s}
+.hero-sound:hover{background:rgba(238,235,230,.95)}
+@media (max-width:760px){.hero-sound{bottom:auto;top:16px;right:16px}}
+@media (max-width:860px){
+  .nav-l a.nl,.nav-r a.nl{display:none}
+  .burger{display:inline-flex}
+}
+.mobile-menu{position:fixed;inset:0;z-index:70;background:var(--paper);padding-top:calc(env(safe-area-inset-top,0px) + 20px);padding-left:var(--gutter);padding-right:var(--gutter-r);display:flex;flex-direction:column;gap:6px;transform:translateY(-100%);transition:transform .5s var(--ease);visibility:hidden}
+.mobile-menu.open{transform:none;visibility:visible}
+.mobile-menu a{font-family:var(--f-display);font-stretch:125%;font-weight:700;font-size:40px;text-transform:uppercase;text-decoration:none;line-height:1.15}
+.mobile-menu .close{align-self:flex-end;margin-bottom:24px}
+
+/* views */
+[data-view]{animation:viewIn .6s var(--ease) both}
+@keyframes viewIn{from{opacity:.0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* HERO */
+.hero{position:relative;min-height:clamp(560px,86vh,940px);display:flex;align-items:flex-end;overflow:hidden;background:var(--sand);color:#24221F}
+.hero-media{position:absolute;inset:0}
+.hero-media .hero-still{position:absolute;inset:0;opacity:0;animation:none;transition:opacity 1.6s var(--ease)}
+.hero-media .hero-still.show{opacity:1}
+/* miękkie rozmycie dolnej krawędzi zdjęcia w kolor strony */
+.hero-media::after{content:"";position:absolute;inset:auto 0 0 0;height:28%;background:linear-gradient(to bottom,rgba(238,235,230,0) 0%,rgba(238,235,230,.55) 55%,var(--paper) 100%);pointer-events:none;z-index:1}
+.hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover;object-position:62% 30%;animation:heroZoom 2.4s var(--ease) both}
+@keyframes heroZoom{from{transform:scale(1.06)}to{transform:scale(1)}}
+.hero-copy{position:relative;z-index:2;width:100%;padding-block:clamp(40px,7vw,96px)}
+.hero h1{font-size:clamp(56px,11.5vw,184px);max-width:7.5ch}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line>span{display:inline-block;animation:rise 1.1s var(--ease) both}
+.hero h1 .line:nth-child(2)>span{animation-delay:.12s}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+.hero .sub{margin-top:22px;max-width:36ch;font-size:17px;color:#57534D;animation:fade 1s .5s var(--ease) both}
+.hero .cta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;animation:fade 1s .65s var(--ease) both}
+.hero .btn.ghost{color:#24221F;border-color:#24221F}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.hero-tag{position:absolute;z-index:2;right:var(--gutter-r);top:24px;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#57534D;background:rgba(238,235,230,.7);padding:6px 10px;backdrop-filter:blur(6px)}
+@media (max-width:760px){
+  .hero{min-height:auto;flex-direction:column;align-items:stretch;background:#E3DFD9}
+  .hero-media{position:relative;aspect-ratio:4/5;max-width:100%}
+  .hero-media img,.hero-media video{object-position:76% 20%}
+  .hero-copy{background:var(--paper);color:var(--ink);padding-block:32px 40px}
+  .hero .sub{color:var(--graphite)}
+  .hero .btn.ghost{color:var(--ink);border-color:var(--ink)}
+}
+
+/* marquee */
+.ticker{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;padding-block:16px;background:var(--paper)}
+.ticker-track{display:inline-flex;gap:48px;animation:tick 38s linear infinite;font-family:var(--f-display);font-stretch:125%;font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+.ticker-track span{display:inline-flex;align-items:center;gap:48px}
+.ticker-track span::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--mint)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+section.block{padding-block:clamp(72px,10vw,150px)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(32px,4vw,56px)}
+.sec-head h2{font-size:clamp(36px,6vw,88px)}
+
+/* featured */
+.feature{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(24px,5vw,96px);align-items:center}
+.feature-img{background:#E3DED6;position:relative;overflow:hidden;aspect-ratio:3/4;max-width:100%}
+.feature-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.feature-img:hover img{transform:scale(1.035)}
+.badge{position:absolute;left:16px;top:16px;background:var(--celadon);color:#24221F;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px}
+.feature-info{display:flex;flex-direction:column;gap:22px;min-width:0}
+.feature-info h2{font-size:clamp(40px,5.4vw,80px)}
+.price{font-family:var(--f-mono);font-size:18px;font-variant-numeric:tabular-nums}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.specs div{padding:18px 0;display:flex;flex-direction:column;gap:2px}
+.specs div+div{padding-left:18px;border-left:1px solid var(--line)}
+.specs b{font-family:var(--f-display);font-stretch:125%;font-size:clamp(22px,2.4vw,32px);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.specs small{font-size:12px;color:var(--muted)}
+.swatches{display:flex;gap:10px;align-items:center}
+.sw{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);cursor:pointer;padding:0;position:relative;transition:transform .25s var(--ease)}
+.sw:hover{transform:scale(1.08)}
+.sw[aria-pressed="true"]{box-shadow:0 0 0 2px var(--paper),0 0 0 3px var(--ink)}
+.sw.c-seledyn{background:#A8B2A7}.sw.c-kosc{background:#E9E5DC}.sw.c-grafit{background:#46433F}
+
+/* campaign */
+/* płynne przejścia kolorów: off-white → seledyn → off-white, z rozmytymi plamami światła */
+:root{--blend:clamp(140px,16vw,260px)}
+section.campaign{position:relative;isolation:isolate;overflow:hidden;color:#24221F;padding-block:calc(var(--blend) * .8);
+  background:linear-gradient(to bottom,var(--paper) 0,color-mix(in srgb,var(--celadon) 45%,var(--paper)) calc(var(--blend) * .45),var(--celadon) var(--blend),var(--celadon) calc(100% - var(--blend)),color-mix(in srgb,var(--celadon) 45%,var(--paper)) calc(100% - var(--blend) * .45),var(--paper) 100%)}
+.campaign::before{content:"";position:absolute;inset:8% -15%;z-index:-1;pointer-events:none;filter:blur(60px);
+  background:radial-gradient(38% 42% at 18% 35%,rgba(247,245,241,.55),transparent 70%),radial-gradient(34% 40% at 84% 62%,rgba(164,150,134,.28),transparent 70%),radial-gradient(30% 30% at 55% 90%,rgba(167,180,166,.6),transparent 70%)}
+.campaign .eyebrow{color:#57534D}
+.camp-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(10px,1.4vw,20px)}
+.crop{position:relative;overflow:hidden;background-repeat:no-repeat;background-color:#D2CDCA;max-width:100%}
+.crop .cap{position:absolute;left:14px;bottom:12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#24221F;background:rgba(238,235,230,.78);padding:5px 8px}
+.camp-a{grid-column:1 / span 7;aspect-ratio:16/10}
+.camp-b{grid-column:8 / span 5;aspect-ratio:4/5}
+.camp-c{grid-column:1 / span 4;aspect-ratio:3/4}
+.camp-d{grid-column:5 / span 4;aspect-ratio:3/4}
+.camp-e{grid-column:9 / span 4;aspect-ratio:3/4}
+.reel{position:relative;overflow:hidden;background:#2E2B27;aspect-ratio:9/16;max-width:100%}
+.reel video{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.reel .rl{position:absolute;left:12px;top:12px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#EEEBE6;display:flex;align-items:center;gap:6px}
+.reel .rl::before{content:"";width:6px;height:6px;border-radius:50%;background:#BAC5B9}
+.camp-quote{grid-column:1 / -1;display:flex;justify-content:space-between;gap:24px;align-items:flex-end;flex-wrap:wrap;padding-top:clamp(24px,4vw,48px)}
+.camp-quote p{font-family:var(--f-display);font-stretch:100%;font-weight:400;font-size:clamp(22px,2.6vw,36px);line-height:1.2;max-width:28ch}
+@media (max-width:760px){
+  .camp-a,.camp-b{grid-column:1 / -1}
+  .camp-c,.camp-d,.camp-e{grid-column:span 6}
+  .camp-e{display:none}
+  .feature{grid-template-columns:1fr}
+}
+.c-woman{background-image:url(assets/img/hero-campaign.jpg);background-size:320% auto;background-position:64% 8%}
+.c-man{background-image:url(assets/img/hero-campaign.jpg);background-size:320% auto;background-position:94% 0%}
+.c-wide{background-image:url(assets/img/hero-campaign.jpg);background-size:cover;background-position:70% 40%}
+.c-pocket{background-image:url(assets/img/product-front.jpg);background-size:300% auto;background-position:50% 63%}
+.c-hood{background-image:url(assets/img/product-front.jpg);background-size:300% auto;background-position:50% 9%}
+.c-cuff{background-image:url(assets/img/product-front.jpg);background-size:300% auto;background-position:8% 93%}
+.c-hem{background-image:url(assets/img/product-front.jpg);background-size:240% auto;background-position:40% 88%}
+
+/* philosophy */
+.philo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,120px)}
+.philo h2{font-size:clamp(40px,6vw,96px)}
+.philo-list{display:grid;gap:0;border-top:1px solid var(--line)}
+.philo-item{display:grid;grid-template-columns:140px 1fr;gap:24px;padding-block:28px;border-bottom:1px solid var(--line)}
+.philo-item b{font-family:var(--f-display);font-stretch:125%;font-weight:700;text-transform:uppercase;font-size:15px;letter-spacing:.06em}
+.philo-item p{color:var(--graphite);max-width:52ch}
+@media (max-width:860px){.philo{grid-template-columns:1fr}.philo-item{grid-template-columns:1fr;gap:6px}}
+
+/* newsletter */
+section.news{position:relative;isolation:isolate;overflow:hidden;padding-top:calc(var(--blend) * .8);background:linear-gradient(to bottom,var(--paper) 0,color-mix(in srgb,var(--sand) 50%,var(--paper)) calc(var(--blend) * .5),var(--sand) var(--blend))}
+.news::before{content:"";position:absolute;inset:20% -10% -10%;z-index:-1;pointer-events:none;filter:blur(70px);background:radial-gradient(40% 50% at 80% 40%,rgba(186,197,185,.55),transparent 70%)}
+.news-in{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,5vw,80px);align-items:end}
+.news h2{font-size:clamp(34px,5vw,72px)}
+.field-row{display:flex;border-bottom:1px solid var(--ink)}
+.field-row input{flex:1;min-width:0;background:transparent;border:0;padding:16px 0;font:inherit;font-size:18px;color:var(--ink)}
+.field-row input:focus{outline:none}
+.field-row button{background:none;border:0;cursor:pointer;font-family:var(--f-display);font-stretch:112%;font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:13px;padding:0 0 0 16px}
+.form-note{font-size:13px;color:var(--muted);margin-top:12px}
+.form-ok{color:var(--mint);font-weight:600}
+@media (max-width:760px){.news-in{grid-template-columns:1fr}}
+
+/* footer */
+footer.site{color:#DDD8D0;padding-top:calc(var(--blend) + 40px);background:linear-gradient(to bottom,var(--sand) 0,#9C978E calc(var(--blend) * .45),#4A4640 calc(var(--blend) * .8),#24221F var(--blend))}
+.foot-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px}
+.foot-grid h4{margin:0 0 16px;font-family:var(--f-mono);font-weight:400;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#958F86}
+.foot-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.foot-grid a{text-decoration:none;font-size:15px}
+.foot-grid a:hover{color:#BAC5B9}
+.foot-brand p{color:#ABA59C;max-width:34ch;margin-top:16px}
+.foot-word{font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:clamp(80px,22vw,340px);line-height:.8;letter-spacing:-.02em;color:#BAC5B9;margin-top:clamp(56px,8vw,110px);overflow:hidden;white-space:nowrap}
+.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:24px;border-top:1px solid rgba(255,255,255,.12);font-size:13px;color:#958F86}
+.pay{display:flex;gap:8px;flex-wrap:wrap}
+.pay span{border:1px solid rgba(255,255,255,.2);padding:3px 8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em}
+@media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1 / -1}}
+
+/* SHOP GRID */
+.page-head{padding-block:clamp(48px,7vw,100px) clamp(24px,3vw,40px)}
+.page-head h1{font-size:clamp(48px,9vw,140px)}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vw,24px)}
+@media (max-width:980px){.grid4{grid-template-columns:repeat(2,1fr)}}
+.card{text-decoration:none;display:flex;flex-direction:column;gap:12px;cursor:pointer;background:none;border:0;padding:0;text-align:left}
+.card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#E3DED6;max-width:100%}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),opacity .6s}
+.card-img .alt{position:absolute;inset:0;opacity:0;transition:opacity .6s var(--ease)}
+.card:hover .card-img img{transform:scale(1.04)}
+.card:hover .card-img .alt{opacity:1}
+.card-meta{display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.card-meta b{font-weight:600;letter-spacing:.02em}
+.card-meta .p{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.card small{color:var(--muted);font-size:13px}
+.quick{position:absolute;left:12px;right:12px;bottom:12px;transform:translateY(calc(100% + 16px));transition:transform .45s var(--ease)}
+.card:hover .quick,.card:focus-within .quick{transform:none}
+.f-seledyn{filter:none}
+.f-kosc{filter:grayscale(1) sepia(.1) brightness(1.12) contrast(.9)}
+.f-grafit{filter:grayscale(1) brightness(.48) contrast(1.3)}
+.soon{background:var(--celadon);display:flex;flex-direction:column;justify-content:space-between;padding:22px;color:#24221F}
+.soon .display{font-size:clamp(32px,3.6vw,54px)}
+
+/* PRODUCT */
+.pdp{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(24px,4vw,72px);padding-top:clamp(20px,3vw,40px)}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;min-width:0}
+.gallery .g{position:relative;overflow:hidden;background:#E3DED6;aspect-ratio:3/4;cursor:zoom-in;max-width:100%}
+.gallery .g.wide{grid-column:1 / -1;aspect-ratio:16/10}
+.gallery .g img,.gallery .g video{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.gallery .g:hover img{transform:scale(1.03)}
+.gallery .g .crop{position:absolute;inset:0}
+.g .cap{position:absolute;left:12px;bottom:10px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;background:rgba(238,235,230,.8);color:#24221F;padding:4px 8px}
+.buy{position:sticky;top:calc(env(safe-area-inset-top,0px) + 96px);align-self:start;display:flex;flex-direction:column;gap:24px;min-width:0}
+.crumbs{font-size:12.5px;color:var(--muted)}
+.crumbs a{text-decoration:none}
+.buy h1{font-size:clamp(40px,4.6vw,68px)}
+.row-between{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.opt-label{display:flex;justify-content:space-between;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.opt-label span{color:var(--muted);text-transform:none;letter-spacing:0}
+.sizes{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.size{height:48px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-family:var(--f-mono);font-size:13px;transition:border-color .2s,background .2s}
+.size:hover{border-color:var(--ink)}
+.size[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.size:disabled{color:var(--muted);text-decoration:line-through;cursor:not-allowed;background:transparent}
+.size-err{color:#B4483A;font-size:13px;min-height:1em}
+.perks{display:grid;gap:8px;font-size:13.5px;color:var(--graphite)}
+.perks div{display:flex;gap:10px;align-items:center}
+.perks svg{width:16px;height:16px;flex:none;color:var(--mint)}
+details.acc{border-top:1px solid var(--line)}
+details.acc:last-of-type{border-bottom:1px solid var(--line)}
+details.acc summary{list-style:none;cursor:pointer;padding:18px 0;display:flex;justify-content:space-between;align-items:center;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:"+";font-family:var(--f-mono);font-size:18px;transition:transform .3s var(--ease)}
+details.acc[open] summary::after{transform:rotate(45deg)}
+details.acc .acc-body{padding-bottom:22px;color:var(--graphite);font-size:15px;display:grid;gap:12px}
+.acc-body ul{margin:0;padding-left:18px}
+.table-wrap{overflow-x:auto}
+table.sizes-t{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+table.sizes-t th,table.sizes-t td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+table.sizes-t th{font-family:var(--f-mono);font-weight:500;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.unit-toggle{display:inline-flex;border:1px solid var(--line)}
+.unit-toggle button{background:none;border:0;padding:4px 10px;cursor:pointer;font-family:var(--f-mono);font-size:11px}
+.unit-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.sticky-buy{display:none}
+@media (max-width:900px){
+  .pdp{grid-template-columns:1fr}
+  .gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;margin-left:calc(var(--gutter) * -1);margin-right:calc(var(--gutter-r) * -1);padding-left:var(--gutter);padding-right:var(--gutter-r);scrollbar-width:none}
+  .gallery .g,.gallery .g.wide{flex:0 0 84%;aspect-ratio:3/4;scroll-snap-align:center}
+  .buy{position:static}
+  .sticky-buy{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;gap:12px;align-items:center;background:var(--paper);border-top:1px solid var(--line);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-left:var(--gutter);padding-right:var(--gutter-r);transform:translateY(110%);transition:transform .4s var(--ease)}
+  .sticky-buy.show{transform:none}
+  .sticky-buy .btn{flex:1;height:48px}
+}
+.pdp-film{margin-top:clamp(64px,8vw,120px);position:relative;background:#2E2B27;aspect-ratio:21/9;overflow:hidden;max-width:100%}
+.pdp-film video{width:100%;height:100%;object-fit:cover}
+.pdp-film .over{position:absolute;inset:auto 0 0 0;padding:clamp(18px,3vw,40px);color:#EEEBE6;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;background:linear-gradient(transparent,rgba(10,12,11,.55))}
+.pdp-film h3{font-size:clamp(28px,4vw,56px)}
+@media (max-width:760px){.pdp-film{aspect-ratio:4/5}}
+
+/* DRAWER */
+.overlay{position:fixed;inset:0;z-index:80;background:rgba(36,34,31,.35);opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s}
+.overlay.open{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:90;width:min(440px,100%);background:var(--paper);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .55s var(--ease);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+.drawer.open{transform:none}
+.dr-head{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line)}
+.dr-head h2{font-family:var(--f-display);font-stretch:125%;font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.ship-bar{padding:16px 24px;border-bottom:1px solid var(--line);font-size:13px}
+.bar{height:3px;background:var(--line);margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--mint);transition:width .6s var(--ease)}
+.dr-items{flex:1;overflow-y:auto;padding:8px 24px}
+.ci{display:grid;grid-template-columns:84px 1fr;gap:16px;padding-block:18px;border-bottom:1px solid var(--line)}
+.ci-img{aspect-ratio:3/4;background:#E3DED6;overflow:hidden}
+.ci-img img{width:100%;height:100%;object-fit:cover}
+.ci-top{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.ci-top b{font-weight:600}
+.ci small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.ci-bot{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line)}
+.qty button{width:34px;height:34px;background:none;border:0;cursor:pointer;font-size:16px}
+.qty span{min-width:26px;text-align:center;font-family:var(--f-mono);font-size:13px}
+.rm{background:none;border:0;cursor:pointer;font-size:12.5px;color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.dr-foot{padding:20px 24px;border-top:1px solid var(--line);display:grid;gap:14px}
+.sum-row{display:flex;justify-content:space-between;font-size:14px}
+.sum-row.total{font-size:17px;font-weight:600}
+.sum-row .p{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.empty{padding:48px 0;text-align:center;display:grid;gap:18px;justify-items:center;color:var(--graphite)}
+
+/* CHECKOUT */
+.co{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(24px,5vw,90px);padding-block:clamp(32px,5vw,72px) clamp(72px,8vw,120px)}
+.co-steps{display:flex;gap:18px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;flex-wrap:wrap}
+.co-steps b{color:var(--ink);font-weight:500}
+fieldset{border:0;padding:0;margin:0 0 40px;display:grid;gap:14px;min-width:0}
+legend{font-family:var(--f-display);font-stretch:125%;font-weight:700;font-size:20px;text-transform:uppercase;margin-bottom:18px;padding:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.inp{display:flex;flex-direction:column;gap:6px;min-width:0}
+.inp label{font-size:12.5px;color:var(--graphite)}
+.inp input,.inp textarea,.inp select{height:50px;border:1px solid var(--line);background:var(--surface);padding:0 14px;font:inherit;font-size:15px;color:var(--ink);border-radius:0;transition:border-color .2s;min-width:0}
+.inp textarea{height:auto;min-height:130px;padding:12px 14px;resize:vertical}
+.inp input:focus,.inp textarea:focus,.inp select:focus{outline:none;border-color:var(--ink)}
+.inp.err input,.inp.err textarea{border-color:#B4483A}
+.inp .msg{font-size:12px;color:#B4483A;min-height:0}
+.opt{display:flex;align-items:center;gap:14px;border:1px solid var(--line);background:var(--surface);padding:16px;cursor:pointer;transition:border-color .2s}
+.opt:has(input:checked){border-color:var(--ink)}
+.opt input{accent-color:#24221F;width:18px;height:18px;margin:0}
+.opt .t{flex:1;display:flex;flex-direction:column}
+.opt .t small{color:var(--muted);font-size:13px}
+.opt .p{font-family:var(--f-mono);font-size:14px}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--graphite)}
+.chk input{margin-top:4px;accent-color:#24221F}
+.demo-note{font-size:13px;color:var(--graphite);background:var(--celadon);padding:12px 14px}
+.co-sum{background:var(--sand);padding:clamp(20px,3vw,36px);align-self:start;position:sticky;top:calc(env(safe-area-inset-top,0px) + 96px);display:grid;gap:14px;min-width:0}
+.co-sum h3{font-family:var(--f-display);font-stretch:125%;font-weight:700;text-transform:uppercase;font-size:18px}
+.co-line{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;font-size:14px}
+.co-line .ci-img{position:relative;overflow:visible}
+.co-line .ci-img img{width:100%;height:100%;object-fit:cover}
+.co-line .q{position:absolute;top:-8px;right:-8px;background:var(--ink);color:var(--paper);width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-family:var(--f-mono)}
+.code{display:flex;gap:8px}
+.code input{flex:1;min-width:0;height:46px;border:1px solid var(--line);background:var(--surface);padding:0 12px;font:inherit;color:var(--ink)}
+.code button{height:46px;padding:0 16px;border:1px solid var(--ink);background:none;cursor:pointer;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+@media (max-width:900px){.co{grid-template-columns:1fr}.co-sum{position:static;order:-1}.two{grid-template-columns:1fr}}
+.done{padding-block:clamp(72px,10vw,140px);display:grid;gap:22px;justify-items:start;max-width:720px}
+.done h1{font-size:clamp(44px,7vw,100px)}
+
+/* TEXT PAGES */
+.prose{max-width:72ch;display:grid;gap:18px;padding-bottom:clamp(72px,9vw,140px);color:var(--graphite);font-size:16.5px}
+.prose h2{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:22px;text-transform:uppercase;letter-spacing:.02em;color:var(--ink);margin-top:22px}
+.prose ul,.prose ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.prose strong{color:var(--ink)}
+.about-hero{aspect-ratio:21/9;max-width:100%}
+@media (max-width:760px){.about-hero{aspect-ratio:4/5}}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,90px);padding-block:clamp(56px,8vw,120px)}
+.about-grid .big{font-family:var(--f-display);font-weight:400;font-size:clamp(24px,2.8vw,40px);line-height:1.2;color:var(--ink)}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr}}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(24px,5vw,90px);padding-bottom:clamp(72px,9vw,140px)}
+.contact-grid .info{display:grid;gap:28px;align-content:start}
+.contact-grid .info div{display:grid;gap:4px}
+.copy{background:none;border:1px solid var(--line);padding:3px 8px;cursor:pointer;font-family:var(--f-mono);font-size:11px;margin-left:8px}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}}
+.faq-wrap{max-width:860px;padding-bottom:clamp(72px,9vw,140px)}
+.faq-wrap h2{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400;margin:40px 0 4px}
+.faq-wrap details.acc summary{text-transform:none;letter-spacing:0;font-size:17px;font-weight:500}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:100;transform:translate(-50%,calc(100% + 60px));visibility:hidden;background:var(--ink);color:var(--paper);padding:14px 20px;font-size:14px;display:flex;gap:14px;align-items:center;transition:transform .5s var(--ease);max-width:calc(100% - 32px)}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+.toast button{background:none;border:0;color:var(--celadon);cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:110;background:var(--paper);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .35s}
+.lb.open{opacity:1;visibility:visible}
+.lb-in{width:min(92vw,1100px);height:min(86vh,1200px);position:relative}
+.lb-in>*{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.lb-in .crop{background-size:contain!important;background-position:center!important}
+.lb .icon-btn{position:absolute;top:calc(20px + env(safe-area-inset-top,0px));right:calc(20px + env(safe-area-inset-right,0px));margin:0}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+</style>
+
+<!-- ================= SVG SPRITES ================= -->
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 32 32"><circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9.5 25V15.5a6.5 6.5 0 0 1 13 0V25" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6L5 8Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="menu" viewBox="0 0 24 24"><path d="M3 8h18M3 16h18" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+</svg>
+
+<div class="announce" id="announce">Darmowa dostawa od 500 zł · 30 dni na zwrot · Szyte w Porto</div>
+
+<header class="site" id="hdr">
+  <div class="wrap nav">
+    <div class="nav-l">
+      <button class="icon-btn burger" id="burger" aria-label="Otwórz menu"><svg><use href="#menu"/></svg></button>
+      <a class="nl link" href="#sklep">Sklep</a>
+      <a class="nl link" href="#form-01">FORM 01</a>
+      <a class="nl link" href="#o-nas">O nas</a>
+    </div>
+    <a class="logo" href="#" aria-label="CÉLA — strona główna"><svg><use href="#mark"/></svg><b>CÉLA</b></a>
+    <div class="nav-r">
+      <a class="nl link" href="#faq">Pomoc</a>
+      <a class="nl link" href="#kontakt">Kontakt</a>
+      <button class="icon-btn" id="cartBtn" aria-label="Koszyk"><svg><use href="#bag"/></svg><span class="count" id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-menu" id="mmenu" aria-label="Menu mobilne">
+  <button class="icon-btn close" id="mclose" aria-label="Zamknij menu"><svg><use href="#x"/></svg></button>
+  <a href="#">Start</a><a href="#sklep">Sklep</a><a href="#form-01">FORM 01</a><a href="#o-nas">O nas</a><a href="#faq">FAQ</a><a href="#kontakt">Kontakt</a>
+</nav>
+
+<main id="app">
+
+<!-- ================= HOME ================= -->
+<div data-view="home">
+  <section class="hero">
+    <div class="hero-media">
+      <!-- Wideo kampanii: assets/video/hero-16x9.mp4 (Artlist, Seedance 2.0 Mini, 480p). Wersję 1080p wygeneruj z promptu V1 w ARTLIST-PROMPTS.md i podmień plik. -->
+      <!-- Film gra raz (4 s) z dźwiękiem, dźwięk wycisza się na końcu, potem płynnie przechodzi w zdjęcie kampanii. -->
+      <video id="heroVid" data-once muted playsinline preload="auto" poster="assets/img/hero-campaign.jpg" aria-label="Kampania CÉLA — modelka i model w seledynowych bluzach FORM 01">
+        <source src="assets/video/hero-16x9.mp4" type="video/mp4">
+      </video>
+      <img class="hero-still" id="heroStill" src="assets/img/hero-campaign.jpg" alt="" aria-hidden="true">
+    </div>
+    <span class="hero-tag">Kampania AW26 · Kolekcja 01</span>
+    <button class="hero-sound sound" id="heroSound" hidden aria-label="Odtwórz film z dźwiękiem"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="heroSoundLbl">Odtwórz z dźwiękiem</span></button>
+    <div class="wrap hero-copy">
+      <p class="eyebrow" style="color:inherit;opacity:.7;margin-bottom:18px">CÉLA Studio — FORM 01 Hoodie</p>
+      <h1 class="display"><span class="line"><span>Wear the</span></span><span class="line"><span>quiet.</span></span></h1>
+      <p class="sub">Jedna bluza, dopracowana do granic. 480 g/m² szczotkowanej bawełny organicznej w kolorze, który uspokaja.</p>
+      <div class="cta">
+        <a class="btn" href="#form-01"><span>Shop now</span></a>
+        <a class="btn ghost" href="#o-nas"><span>Poznaj markę</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>480 g/m² loopback</span><span>100% bawełna organiczna</span><span>Szyte w Porto</span><span>Podwójny kaptur bez sznurków</span><span>Pre-shrunk</span><span>30 dni na zwrot</span>
+      <span>480 g/m² loopback</span><span>100% bawełna organiczna</span><span>Szyte w Porto</span><span>Podwójny kaptur bez sznurków</span><span>Pre-shrunk</span><span>30 dni na zwrot</span>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="wrap feature">
+      <a class="feature-img" href="#form-01" aria-label="Zobacz FORM 01 Hoodie">
+        <img id="featImg" src="assets/img/product-front.jpg" alt="Bluza FORM 01 w kolorze seledyn, widok z przodu" loading="lazy">
+        <span class="badge">Bestseller</span>
+      </a>
+      <div class="feature-info">
+        <p class="eyebrow">Produkt główny</p>
+        <h2 class="display">FORM 01<br>Hoodie</h2>
+        <p style="color:var(--graphite);max-width:46ch">Pudełkowy krój z obniżoną linią ramion, kaptur z podwójnej warstwy, który trzyma formę bez sznurków. Zaprojektowana tak, by wyglądać lepiej z każdym praniem.</p>
+        <div class="specs">
+          <div><b>480</b><small>g/m² gramatura</small></div>
+          <div><b>100%</b><small>bawełna organiczna</small></div>
+          <div><b>3</b><small>kolory</small></div>
+        </div>
+        <div class="row-between">
+          <div class="swatches" role="group" aria-label="Kolor">
+            <button class="sw c-seledyn" data-feat="seledyn" aria-pressed="true" aria-label="Seledyn"></button>
+            <button class="sw c-kosc" data-feat="kosc" aria-pressed="false" aria-label="Kość"></button>
+            <button class="sw c-grafit" data-feat="grafit" aria-pressed="false" aria-label="Grafit"></button>
+          </div>
+          <span class="price">449 zł</span>
+        </div>
+        <a class="btn" href="#form-01"><span>Wybierz rozmiar</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block campaign">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="eyebrow" style="margin-bottom:12px">Kampania AW26</p><h2 class="display">Ciszej.<br>Pewniej.</h2></div>
+        <a class="btn ghost" href="#sklep" style="border-color:#24221F;color:#24221F"><span>Zobacz kolekcję</span></a>
+      </div>
+      <div class="camp-grid">
+        <div class="crop camp-a c-wide" role="img" aria-label="Para modeli w bluzach FORM 01 na kamiennym dziedzińcu"><span class="cap">Kopenhaga · Seledyn</span></div>
+        <div class="reel camp-b" style="aspect-ratio:4/5">
+          <!-- Wideo produktu: assets/video/product-4x5.mp4 (prompt V2) -->
+          <video autoplay muted loop playsinline preload="none" poster="assets/img/product-front.jpg" aria-label="Film produktowy FORM 01"><source src="assets/video/product-4x5.mp4" type="video/mp4"></video>
+          <span class="rl">Film · FORM 01</span>
+        </div>
+        <div class="crop camp-c c-woman" role="img" aria-label="Modelka w seledynowej bluzie FORM 01"><span class="cap">Ona · rozmiar S</span></div>
+        <div class="reel camp-d" style="aspect-ratio:3/4">
+          <!-- Reels 9:16: assets/video/reel-01.mp4 (prompt V3) -->
+          <video autoplay muted loop playsinline preload="none" poster="assets/img/hero-campaign.jpg" style="object-position:70% 30%" aria-label="Reel — FORM 01 w ruchu"><source src="assets/video/reel-01.mp4" type="video/mp4"></video>
+          <span class="rl">Reels · 9:16</span>
+        </div>
+        <div class="crop camp-e c-man" role="img" aria-label="Model w seledynowej bluzie FORM 01"><span class="cap">On · rozmiar L</span></div>
+        <div class="camp-quote">
+          <p>Projektujemy rzeczy, które nie muszą krzyczeć, żeby zostać zauważone.</p>
+          <span class="eyebrow">Fot. CÉLA Studio, 2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap philo">
+      <div>
+        <p class="eyebrow" style="margin-bottom:14px">Filozofia</p>
+        <h2 class="display">Mniej rzeczy.<br>Lepsze rzeczy.</h2>
+        <p style="margin-top:24px;color:var(--graphite);max-width:44ch">Nie robimy kolekcji co sezon. Robimy jedną bluzę i poprawiamy ją tak długo, aż nie da się jej już ulepszyć. Potem dodajemy kolor.</p>
+      </div>
+      <div class="philo-list">
+        <div class="philo-item"><b>Materiał</b><p>Bawełna organiczna z certyfikatem GOTS, dziana w pętelkę i szczotkowana od środka. Ciężka, miękka, oddychająca. Wstępnie zbiegnięta, więc po praniu zostaje w swoim rozmiarze.</p></div>
+        <div class="philo-item"><b>Forma</b><p>Obniżone ramiona, szeroki ściągacz 9 cm, kaptur z dwóch warstw, który stoi sam. Żadnych sznurków, metalowych końcówek ani nadruków. Tylko konstrukcja.</p></div>
+        <div class="philo-item"><b>Czas</b><p>Szyjemy w małych seriach w rodzinnej szwalni pod Porto. Mniej sztuk, mniej odpadów, żadnych wyprzedaży. Cena jest stała przez cały rok.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block news">
+    <div class="wrap news-in">
+      <div>
+        <p class="eyebrow" style="margin-bottom:14px">Newsletter</p>
+        <h2 class="display">Cisza w skrzynce.<br>Raz w miesiącu.</h2>
+      </div>
+      <form id="newsForm" novalidate>
+        <p style="color:var(--graphite);margin-bottom:18px">Nowe kolory, premiery i zaproszenia na sesje. Na start −10% na pierwsze zamówienie.</p>
+        <div class="field-row">
+          <label class="sr" for="newsEmail">Adres e-mail</label>
+          <input id="newsEmail" type="email" placeholder="Twój adres e-mail" autocomplete="email" required>
+          <button type="submit">Zapisz się</button>
+        </div>
+        <p class="form-note" id="newsMsg">Wypisać się można jednym kliknięciem. Zobacz <a href="#prywatnosc">politykę prywatności</a>.</p>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ================= SHOP ================= -->
+<div data-view="sklep" hidden>
+  <div class="wrap page-head">
+    <p class="eyebrow" style="margin-bottom:14px">Kolekcja 01 · 4 produkty</p>
+    <h1 class="display">Sklep</h1>
+  </div>
+  <div class="wrap" style="padding-bottom:clamp(72px,9vw,140px)">
+    <div class="grid4" id="shopGrid"></div>
+  </div>
+</div>
+
+<!-- ================= PRODUCT ================= -->
+<div data-view="form-01" hidden>
+  <div class="wrap pdp">
+    <div class="gallery" id="gallery">
+      <figure class="g" style="margin:0" data-lb="img"><img class="pimg" src="assets/img/product-front.jpg" alt="FORM 01 Hoodie — przód"><span class="cap">Przód</span></figure>
+      <figure class="g" style="margin:0" data-lb="crop"><div class="crop c-woman" role="img" aria-label="Modelka w FORM 01"></div><span class="cap">Na modelce · S</span></figure>
+      <figure class="g wide" style="margin:0" data-lb="crop"><div class="crop c-wide" role="img" aria-label="FORM 01 w kampanii"></div><span class="cap">Kampania AW26</span></figure>
+      <figure class="g" style="margin:0" data-lb="crop"><div class="crop c-hood pfilter" role="img" aria-label="Zbliżenie na podwójny kaptur"></div><span class="cap">Detal · kaptur</span></figure>
+      <figure class="g" style="margin:0" data-lb="crop"><div class="crop c-man" role="img" aria-label="Model w FORM 01"></div><span class="cap">Na modelu · L</span></figure>
+      <figure class="g" style="margin:0" data-lb="crop"><div class="crop c-pocket pfilter" role="img" aria-label="Zbliżenie na kieszeń kangurkę i fakturę dzianiny"></div><span class="cap">Detal · dzianina 480 g/m²</span></figure>
+      <figure class="g" style="margin:0" data-lb="crop"><div class="crop c-cuff pfilter" role="img" aria-label="Zbliżenie na ściągacz mankietu"></div><span class="cap">Detal · ściągacz</span></figure>
+    </div>
+
+    <div class="buy" id="buy">
+      <p class="crumbs"><a href="#">Start</a> / <a href="#sklep">Sklep</a> / FORM 01</p>
+      <div>
+        <p class="eyebrow" style="margin-bottom:10px">Hoodie · Unisex · Oversized</p>
+        <h1 class="display">FORM 01<br>Hoodie</h1>
+      </div>
+      <div class="row-between">
+        <span class="price" style="font-size:22px">449 zł</span>
+        <span style="font-size:13px;color:var(--muted)">z VAT · darmowa dostawa od 500 zł</span>
+      </div>
+
+      <div>
+        <div class="opt-label">Kolor <span id="colorName">Seledyn</span></div>
+        <div class="swatches" role="group" aria-label="Kolor" id="pColors">
+          <button class="sw c-seledyn" data-color="seledyn" aria-pressed="true" aria-label="Seledyn"></button>
+          <button class="sw c-kosc" data-color="kosc" aria-pressed="false" aria-label="Kość"></button>
+          <button class="sw c-grafit" data-color="grafit" aria-pressed="false" aria-label="Grafit"></button>
+        </div>
+      </div>
+
+      <div>
+        <div class="opt-label">Rozmiar <button class="link" style="font-size:13px;text-transform:none;letter-spacing:0" id="openSizes">Tabela rozmiarów</button></div>
+        <div class="sizes" role="group" aria-label="Rozmiar" id="pSizes"></div>
+        <p class="size-err" id="sizeErr" aria-live="polite"></p>
+        <p style="font-size:13px;color:var(--muted)">Krój oversized. Modelka 172 cm nosi S, model 186 cm nosi L. Wolisz bliżej ciała — weź rozmiar mniej.</p>
+      </div>
+
+      <button class="btn full" id="addBtn"><span>Dodaj do koszyka — 449 zł</span></button>
+
+      <div class="perks">
+        <div><svg><use href="#check"/></svg>Wysyłka w 24 h · InPost lub kurier DPD</div>
+        <div><svg><use href="#check"/></svg>30 dni na zwrot, pierwszy zwrot gratis</div>
+        <div><svg><use href="#check"/></svg>Płatność BLIK, Przelewy24, karta, Apple Pay</div>
+      </div>
+
+      <div>
+        <details class="acc" open><summary>Opis</summary><div class="acc-body">
+          <p>FORM 01 to bluza, od której zaczęła się marka. Pudełkowy krój z obniżoną linią ramion i lekko skróconą długością sprawia, że leży swobodnie, ale nie wygląda na za dużą. Kaptur z podwójnej warstwy dzianiny trzyma kształt bez sznurków. Kieszeń kangurka jest wszyta płasko, by nie odstawała.</p>
+          <p>Kolor seledyn barwimy pigmentowo w małych partiach, więc każda sztuka ma delikatnie żywą, matową powierzchnię.</p>
+        </div></details>
+        <details class="acc"><summary>Materiał i skład</summary><div class="acc-body">
+          <ul>
+            <li>100% bawełna organiczna (certyfikat GOTS)</li>
+            <li>Gramatura 480 g/m², dzianina pętelkowa szczotkowana od środka</li>
+            <li>Ściągacze: 96% bawełna, 4% elastan, szerokość 9 cm</li>
+            <li>Wstępnie zbiegnięta (pre-shrunk) — skurcz poniżej 3%</li>
+            <li>Szwy płaskie (flatlock) na ramionach i bokach</li>
+            <li>Uszyta w Portugalii</li>
+          </ul>
+          <p><strong>Pielęgnacja:</strong> pranie w 30°C na lewej stronie, bez suszarki bębnowej, suszyć na płasko, nie prasować nadruku wewnętrznej metki.</p>
+        </div></details>
+        <details class="acc" id="sizeAcc"><summary>Tabela rozmiarów</summary><div class="acc-body">
+          <div class="row-between"><span style="font-size:13px">Wymiary bluzy na płasko</span>
+            <span class="unit-toggle" role="group" aria-label="Jednostki"><button aria-pressed="true" data-unit="cm">cm</button><button aria-pressed="false" data-unit="in">in</button></span></div>
+          <div class="table-wrap"><table class="sizes-t" id="sizeTable"></table></div>
+          <p style="font-size:13px">Szerokość mierzona 2 cm pod pachą, długość od najwyższego punktu ramienia, rękaw od szwu ramienia.</p>
+        </div></details>
+        <details class="acc"><summary>Dostawa i zwroty</summary><div class="acc-body">
+          <ul>
+            <li>InPost Paczkomat 24/7 — 13,99 zł, 1–2 dni robocze</li>
+            <li>Kurier DPD — 17,99 zł, 1–2 dni robocze</li>
+            <li>Darmowa dostawa od 500 zł</li>
+            <li>Zwrot do 30 dni od doręczenia, pierwszy zwrot bezpłatny</li>
+          </ul>
+          <p><a class="link" href="#dostawa">Pełne zasady dostawy i zwrotów</a></p>
+        </div></details>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="pdp-film">
+      <!-- Na razie film kampanii z Artlist; docelowo film produktowy assets/video/product-film.mp4 (prompt V2) -->
+      <video autoplay muted loop playsinline preload="none" poster="assets/img/hero-campaign.jpg" style="object-position:70% 35%" aria-label="Film FORM 01"><source src="assets/video/hero-16x9.mp4" type="video/mp4"></video>
+      <div class="over"><h3 class="display">FORM 01<br>w ruchu</h3><span class="eyebrow" style="color:#E6E2DC">Film kampanii AW26</span></div>
+    </div>
+  </div>
+
+  <section class="block" style="padding-top:clamp(64px,8vw,120px)">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="display" style="font-size:clamp(32px,4.6vw,64px)">You may<br>also like</h2></div>
+      <div class="grid4" id="ymal"></div>
+    </div>
+  </section>
+
+  <div class="sticky-buy" id="stickyBuy">
+    <div style="display:flex;flex-direction:column;line-height:1.3"><b style="font-size:14px">FORM 01</b><span class="price" style="font-size:13px" id="stickyMeta">Seledyn · 449 zł</span></div>
+    <button class="btn" id="stickyAdd"><span>Dodaj do koszyka</span></button>
+  </div>
+</div>
+
+<!-- ================= CHECKOUT ================= -->
+<div data-view="zamowienie" hidden>
+  <div class="wrap">
+    <form class="co" id="coForm" novalidate>
+      <div style="min-width:0">
+        <p class="co-steps"><b>Koszyk</b> → <b>Dane i dostawa</b> → <span>Płatność</span> → <span>Potwierdzenie</span></p>
+        <h1 class="display" style="font-size:clamp(40px,6vw,84px);margin-bottom:36px">Zamówienie</h1>
+
+        <fieldset>
+          <legend>Kontakt</legend>
+          <div class="inp"><label for="coEmail">E-mail</label><input id="coEmail" type="email" autocomplete="email" required><span class="msg"></span></div>
+          <div class="inp"><label for="coPhone">Telefon (dla kuriera i InPost)</label><input id="coPhone" type="tel" autocomplete="tel" inputmode="tel" required><span class="msg"></span></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Adres dostawy</legend>
+          <div class="two">
+            <div class="inp"><label for="coFirst">Imię</label><input id="coFirst" autocomplete="given-name" required><span class="msg"></span></div>
+            <div class="inp"><label for="coLast">Nazwisko</label><input id="coLast" autocomplete="family-name" required><span class="msg"></span></div>
+          </div>
+          <div class="inp"><label for="coStreet">Ulica i numer</label><input id="coStreet" autocomplete="street-address" required><span class="msg"></span></div>
+          <div class="two">
+            <div class="inp"><label for="coZip">Kod pocztowy</label><input id="coZip" autocomplete="postal-code" placeholder="00-000" required pattern="\d{2}-\d{3}"><span class="msg"></span></div>
+            <div class="inp"><label for="coCity">Miasto</label><input id="coCity" autocomplete="address-level2" required><span class="msg"></span></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Dostawa</legend>
+          <label class="opt"><input type="radio" name="ship" value="inpost" checked><span class="t">InPost Paczkomat 24/7<small>1–2 dni robocze · wybierzesz paczkomat w wiadomości SMS</small></span><span class="p" data-ship-price="inpost"></span></label>
+          <label class="opt"><input type="radio" name="ship" value="dpd"><span class="t">Kurier DPD<small>1–2 dni robocze · dostawa pod drzwi</small></span><span class="p" data-ship-price="dpd"></span></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Płatność</legend>
+          <label class="opt"><input type="radio" name="pay" value="blik" checked><span class="t">BLIK<small>Kod potwierdzisz w aplikacji banku</small></span></label>
+          <label class="opt"><input type="radio" name="pay" value="p24"><span class="t">Przelewy24<small>Szybki przelew z Twojego banku</small></span></label>
+          <label class="opt"><input type="radio" name="pay" value="card"><span class="t">Karta / Apple Pay / Google Pay<small>Bezpieczna płatność u operatora</small></span></label>
+          <p class="demo-note">Wersja demonstracyjna: płatność nie jest pobierana, a dane nie są nigdzie wysyłane. Podłącz bramkę płatności (np. Przelewy24 lub Stripe) przed startem sprzedaży.</p>
+          <label class="chk"><input type="checkbox" id="coTerms" required><span>Akceptuję <a href="#regulamin">regulamin</a> i zapoznałem(-am) się z <a href="#prywatnosc">polityką prywatności</a>.</span></label>
+          <span class="msg" id="termsMsg" style="font-size:12px;color:#B4483A"></span>
+        </fieldset>
+        <button class="btn full" type="submit" id="coSubmit"><span id="coSubmitTxt">Zamawiam i płacę</span></button>
+      </div>
+
+      <aside class="co-sum" aria-label="Podsumowanie zamówienia">
+        <h3>Podsumowanie</h3>
+        <div id="coLines" style="display:grid;gap:18px"></div>
+        <div class="code"><label class="sr" for="coCode">Kod rabatowy</label><input id="coCode" placeholder="Kod rabatowy (np. QUIET10)"><button type="button" id="coCodeBtn">Użyj</button></div>
+        <div class="sum-row"><span>Produkty</span><span class="p" id="coSub"></span></div>
+        <div class="sum-row" id="coDiscRow" hidden><span>Rabat</span><span class="p" id="coDisc"></span></div>
+        <div class="sum-row"><span>Dostawa</span><span class="p" id="coShip"></span></div>
+        <div class="sum-row total" style="border-top:1px solid var(--line);padding-top:14px"><span>Razem</span><span class="p" id="coTotal"></span></div>
+      </aside>
+    </form>
+  </div>
+</div>
+
+<div data-view="dziekujemy" hidden>
+  <div class="wrap done">
+    <p class="eyebrow" id="orderNo">Zamówienie</p>
+    <h1 class="display">Dziękujemy.</h1>
+    <p style="color:var(--graphite);font-size:18px;max-width:52ch" id="doneTxt">Potwierdzenie wyślemy na Twój adres e-mail. Paczka wyjedzie w ciągu 24 godzin roboczych.</p>
+    <a class="btn" href="#"><span>Wróć do sklepu</span></a>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<div data-view="o-nas" hidden>
+  <div class="wrap page-head">
+    <p class="eyebrow" style="margin-bottom:14px">O marce</p>
+    <h1 class="display">Cisza,<br>którą nosisz.</h1>
+  </div>
+  <div class="wrap"><div class="crop about-hero c-wide" role="img" aria-label="Kampania CÉLA"></div></div>
+  <div class="wrap about-grid">
+    <p class="big">CÉLA zaczęła się od pytania: ile razy można zaprojektować tę samą bluzę, zanim będzie idealna? Odpowiedź brzmiała: czterdzieści dwa.</p>
+    <div class="prose" style="padding:0">
+      <p>Markę założyliśmy w 2025 roku w Gdyni — dwoje projektantów zmęczonych ubraniami, które po trzech praniach traciły kształt. Zamiast kolekcji zrobiliśmy jeden produkt: bluzę z kapturem z ciężkiej bawełny organicznej, szytą w rodzinnej szwalni pod Porto.</p>
+      <p>Nazwa pochodzi od seledynu — <em>céladon</em> — koloru starej chińskiej ceramiki, chłodnego i spokojnego. To nasz znak rozpoznawczy i punkt wyjścia dla każdej kolejnej barwy.</p>
+      <p>Piszemy krótko, projektujemy powoli, nie robimy wyprzedaży. Jeśli coś ma nasze logo, to dlatego, że nie umieliśmy już zrobić tego lepiej.</p>
+      <h2>W liczbach</h2>
+      <ul>
+        <li><strong>42</strong> prototypy przed pierwszą produkcją</li>
+        <li><strong>480 g/m²</strong> gramatury dzianiny</li>
+        <li><strong>1</strong> szwalnia, 14 krawcowych, Vila Nova de Famalicão</li>
+        <li><strong>0</strong> wyprzedaży od początku istnienia marki</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<div data-view="kontakt" hidden>
+  <div class="wrap page-head">
+    <p class="eyebrow" style="margin-bottom:14px">Kontakt</p>
+    <h1 class="display">Napisz<br>do nas.</h1>
+  </div>
+  <div class="wrap contact-grid">
+    <div class="info">
+      <div><span class="eyebrow">Obsługa klienta</span><span style="font-size:18px">hello@cela.studio <button class="copy" data-copy="hello@cela.studio">Kopiuj</button></span><span style="color:var(--muted);font-size:14px">Odpowiadamy w dni robocze w ciągu 24 h.</span></div>
+      <div><span class="eyebrow">Telefon</span><span style="font-size:18px">+48 58 000 00 00 <button class="copy" data-copy="+48 58 000 00 00">Kopiuj</button></span><span style="color:var(--muted);font-size:14px">Pon.–pt. 9:00–17:00</span></div>
+      <div><span class="eyebrow">Studio i zwroty</span><span>CÉLA Studio<br>ul. Świętojańska 00<br>81-000 Gdynia</span></div>
+      <div><span class="eyebrow">Współpraca i prasa</span><span>press@cela.studio</span></div>
+    </div>
+    <form id="contactForm" novalidate style="display:grid;gap:14px">
+      <div class="two">
+        <div class="inp"><label for="ctName">Imię</label><input id="ctName" autocomplete="name" required><span class="msg"></span></div>
+        <div class="inp"><label for="ctEmail">E-mail</label><input id="ctEmail" type="email" autocomplete="email" required><span class="msg"></span></div>
+      </div>
+      <div class="inp"><label for="ctTopic">Temat</label><select id="ctTopic"><option>Zamówienie</option><option>Zwrot lub wymiana</option><option>Rozmiar i dopasowanie</option><option>Współpraca</option><option>Inne</option></select></div>
+      <div class="inp"><label for="ctOrder">Numer zamówienia (opcjonalnie)</label><input id="ctOrder"></div>
+      <div class="inp"><label for="ctMsg">Wiadomość</label><textarea id="ctMsg" required></textarea><span class="msg"></span></div>
+      <button class="btn" type="submit" style="justify-self:start"><span>Wyślij wiadomość</span></button>
+      <p class="form-note" id="ctNote">Formularz demonstracyjny — podłącz go do skrzynki lub systemu helpdesk przed startem.</p>
+    </form>
+  </div>
+</div>
+
+<!-- ================= FAQ ================= -->
+<div data-view="faq" hidden>
+  <div class="wrap page-head">
+    <p class="eyebrow" style="margin-bottom:14px">Pomoc</p>
+    <h1 class="display">FAQ</h1>
+  </div>
+  <div class="wrap faq-wrap" id="faqList"></div>
+</div>
+
+<!-- ================= LEGAL ================= -->
+<div data-view="dostawa" hidden>
+  <div class="wrap page-head"><p class="eyebrow" style="margin-bottom:14px">Informacje</p><h1 class="display" style="font-size:clamp(40px,7vw,110px)">Dostawa<br>i zwroty</h1></div>
+  <div class="wrap prose">
+    <h2>Dostawa</h2>
+    <ul>
+      <li><strong>InPost Paczkomat 24/7</strong> — 13,99 zł, doręczenie 1–2 dni robocze.</li>
+      <li><strong>Kurier DPD</strong> — 17,99 zł, doręczenie 1–2 dni robocze.</li>
+      <li><strong>Darmowa dostawa</strong> dla zamówień od 500 zł.</li>
+      <li>Zamówienia złożone do 13:00 w dzień roboczy wysyłamy tego samego dnia.</li>
+      <li>Wysyłka do UE: 39 zł, 3–5 dni roboczych (DPD Classic).</li>
+    </ul>
+    <h2>Zwroty</h2>
+    <p>Masz <strong>30 dni</strong> od doręczenia na zwrot — dwa razy dłużej niż wymaga prawo. Produkt nie może nosić śladów użytkowania i musi mieć metki.</p>
+    <ol>
+      <li>Napisz na hello@cela.studio z numerem zamówienia.</li>
+      <li>Otrzymasz kod zwrotu InPost — pierwszy zwrot jest bezpłatny.</li>
+      <li>Nadaj paczkę w dowolnym paczkomacie.</li>
+      <li>Pieniądze zwrócimy w ciągu 5 dni roboczych od otrzymania paczki, tą samą metodą płatności.</li>
+    </ol>
+    <h2>Wymiana rozmiaru</h2>
+    <p>Wymiana rozmiaru jest zawsze bezpłatna. Nową sztukę wysyłamy, gdy tylko kurier potwierdzi nadanie zwrotu.</p>
+    <h2>Reklamacje</h2>
+    <p>Odpowiadamy z tytułu rękojmi przez 2 lata. Reklamację rozpatrzymy w ciągu 14 dni.</p>
+  </div>
+</div>
+
+<div data-view="regulamin" hidden>
+  <div class="wrap page-head"><p class="eyebrow" style="margin-bottom:14px">Dokumenty</p><h1 class="display" style="font-size:clamp(40px,7vw,110px)">Regulamin</h1></div>
+  <div class="wrap prose">
+    <p><em>Wzór do uzupełnienia — przed startem sprzedaży zweryfikuj z prawnikiem i wpisz dane firmy.</em></p>
+    <h2>§1 Sprzedawca</h2>
+    <p>Sklep internetowy cela.studio prowadzi [nazwa firmy], [adres], NIP [—], REGON [—], wpisana do [CEIDG/KRS]. Kontakt: hello@cela.studio.</p>
+    <h2>§2 Zamówienia</h2>
+    <ol><li>Zamówienia można składać 24 godziny na dobę przez stronę sklepu.</li><li>Umowa sprzedaży zostaje zawarta z chwilą otrzymania przez Klienta e-maila potwierdzającego przyjęcie zamówienia.</li><li>Ceny podane są w złotych polskich i zawierają podatek VAT.</li></ol>
+    <h2>§3 Płatności</h2>
+    <p>Dostępne metody: BLIK, Przelewy24, karta płatnicza, Apple Pay i Google Pay. Zamówienie realizujemy po zaksięgowaniu płatności.</p>
+    <h2>§4 Dostawa</h2>
+    <p>Koszty i terminy dostawy opisuje strona <a href="#dostawa">Dostawa i zwroty</a>.</p>
+    <h2>§5 Prawo odstąpienia od umowy</h2>
+    <p>Konsument może odstąpić od umowy bez podania przyczyny w terminie 14 dni od doręczenia. Sprzedawca wydłuża ten termin dobrowolnie do 30 dni.</p>
+    <h2>§6 Reklamacje</h2>
+    <p>Sprzedawca odpowiada za zgodność towaru z umową na zasadach określonych w ustawie o prawach konsumenta. Reklamacje rozpatrujemy w ciągu 14 dni.</p>
+    <h2>§7 Postanowienia końcowe</h2>
+    <p>W sprawach nieuregulowanych stosuje się przepisy prawa polskiego. Konsument może skorzystać z pozasądowych sposobów rozwiązywania sporów, w tym platformy ODR.</p>
+  </div>
+</div>
+
+<div data-view="prywatnosc" hidden>
+  <div class="wrap page-head"><p class="eyebrow" style="margin-bottom:14px">Dokumenty</p><h1 class="display" style="font-size:clamp(40px,7vw,110px)">Polityka<br>prywatności</h1></div>
+  <div class="wrap prose">
+    <p><em>Wzór do uzupełnienia — przed startem sprzedaży zweryfikuj z prawnikiem.</em></p>
+    <h2>Administrator danych</h2>
+    <p>Administratorem danych osobowych jest [nazwa firmy], [adres]. Kontakt w sprawie danych: privacy@cela.studio.</p>
+    <h2>Jakie dane zbieramy</h2>
+    <ul><li>Dane do realizacji zamówienia: imię, nazwisko, adres, e-mail, telefon.</li><li>Adres e-mail do newslettera — tylko za Twoją zgodą.</li><li>Dane techniczne i pliki cookies — w zakresie niezbędnym do działania sklepu oraz, za zgodą, analityki.</li></ul>
+    <h2>Cel i podstawa</h2>
+    <ul><li>Realizacja umowy sprzedaży — art. 6 ust. 1 lit. b RODO.</li><li>Obowiązki księgowe i podatkowe — art. 6 ust. 1 lit. c RODO.</li><li>Newsletter i marketing — zgoda, art. 6 ust. 1 lit. a RODO.</li></ul>
+    <h2>Odbiorcy</h2>
+    <p>Firmy kurierskie (InPost, DPD), operator płatności, dostawca hostingu i systemu mailingowego — wyłącznie w zakresie potrzebnym do wykonania usługi.</p>
+    <h2>Twoje prawa</h2>
+    <p>Masz prawo dostępu do danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przeniesienia oraz sprzeciwu, a także prawo skargi do Prezesa UODO.</p>
+    <h2>Okres przechowywania</h2>
+    <p>Dane zamówień przechowujemy przez 5 lat ze względów podatkowych. Dane newslettera — do czasu wypisania się.</p>
+  </div>
+</div>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#" style="color:#EEEBE6"><svg><use href="#mark"/></svg><b>CÉLA</b></a>
+        <p>Minimalistyczne bluzy z ciężkiej bawełny organicznej. Projektowane w Gdyni, szyte w Porto.</p>
+      </div>
+      <div><h4>Sklep</h4><ul><li><a href="#form-01">FORM 01 Hoodie</a></li><li><a href="#sklep">Wszystkie produkty</a></li><li><a href="#form-01" data-goto-size>Tabela rozmiarów</a></li></ul></div>
+      <div><h4>Pomoc</h4><ul><li><a href="#faq">FAQ</a></li><li><a href="#dostawa">Dostawa i zwroty</a></li><li><a href="#kontakt">Kontakt</a></li></ul></div>
+      <div><h4>Marka</h4><ul><li><a href="#o-nas">O nas</a></li><li><a href="#regulamin">Regulamin</a></li><li><a href="#prywatnosc">Polityka prywatności</a></li></ul></div>
+    </div>
+    <div class="foot-word" aria-hidden="true">CÉLA</div>
+    <div class="foot-bottom">
+      <span>© 2026 CÉLA Studio. Wear the quiet.</span>
+      <div class="pay"><span>BLIK</span><span>P24</span><span>VISA</span><span>MC</span><span>APPLE PAY</span><span>INPOST</span></div>
+    </div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Koszyk" aria-hidden="true">
+  <div class="dr-head"><h2>Koszyk <span id="drCount" style="font-family:var(--f-mono);font-weight:400;font-size:13px"></span></h2><button class="icon-btn" id="drClose" aria-label="Zamknij koszyk"><svg><use href="#x"/></svg></button></div>
+  <div class="ship-bar" id="shipBar"></div>
+  <div class="dr-items" id="drItems"></div>
+  <div class="dr-foot" id="drFoot"></div>
+</aside>
+
+<div class="lb" id="lb" role="dialog" aria-label="Powiększenie zdjęcia"><button class="icon-btn" id="lbClose" aria-label="Zamknij"><svg><use href="#x"/></svg></button><div class="lb-in" id="lbIn"></div></div>
+<!-- Ścieżka dźwiękowa z filmu kampanii — gra w pętli na wszystkich podstronach -->
+<div class="toast" id="toast" role="status"><span id="toastTxt"></span><button id="toastBtn">Zobacz koszyk</button></div>
+
+<script>
+(function(){
+const IMG = 'assets/img/product-front.jpg';
+const COLORS = {
+  seledyn:{name:'Seledyn', cls:'f-seledyn'},
+  kosc:{name:'Kość', cls:'f-kosc'},
+  grafit:{name:'Grafit', cls:'f-grafit'}
+};
+const SIZES = ['XS','S','M','L','XL','XXL'];
+const SOLD = {grafit:['XXL'], kosc:['XS']};
+const PRICE = 449, FREE = 500, SHIP = {inpost:13.99, dpd:17.99};
+const SIZE_CM = [ // szerokość, długość, rękaw
+  ['XS',60,66,56],['S',63,68,57],['M',66,70,58],['L',69,72,59],['XL',72,74,60],['XXL',75,76,61]
+];
+const FAQ = [
+  ['Zamówienia i dostawa',[
+    ['Kiedy wyślecie moje zamówienie?','Zamówienia opłacone do 13:00 w dni robocze wysyłamy tego samego dnia. Pozostałe — następnego dnia roboczego.'],
+    ['Ile kosztuje dostawa?','InPost Paczkomat 13,99 zł, kurier DPD 17,99 zł. Od 500 zł dostawa jest darmowa.'],
+    ['Czy wysyłacie za granicę?','Tak, do wszystkich krajów UE za 39 zł. Doręczenie trwa 3–5 dni roboczych.']]],
+  ['Rozmiar i dopasowanie',[
+    ['Jaki rozmiar wybrać?','FORM 01 ma krój oversized. Jeśli lubisz luźno — weź swój zwykły rozmiar. Jeśli wolisz bliżej ciała — rozmiar mniej. Modelka (172 cm) nosi S, model (186 cm) nosi L.'],
+    ['Czy bluza się zbiegnie?','Dzianina jest wstępnie zbiegnięta. Przy praniu w 30°C i suszeniu na płasko skurcz nie przekracza 3%.'],
+    ['Czy bluza jest unisex?','Tak. Rozmiarówka jest wspólna, a krój zaprojektowaliśmy z myślą o różnych sylwetkach.']]],
+  ['Zwroty i płatności',[
+    ['Jak zwrócić produkt?','Masz 30 dni od doręczenia. Napisz na hello@cela.studio, a wyślemy kod zwrotu InPost. Pierwszy zwrot jest bezpłatny.'],
+    ['Jakie metody płatności akceptujecie?','BLIK, Przelewy24, karty Visa i Mastercard, Apple Pay i Google Pay.'],
+    ['Czy organizujecie wyprzedaże?','Nie. Szyjemy małe serie i trzymamy jedną, uczciwą cenę przez cały rok.']]],
+  ['Materiał i pielęgnacja',[
+    ['Z czego jest uszyta bluza?','Ze 100% bawełny organicznej z certyfikatem GOTS, gramatura 480 g/m². Ściągacze mają 4% elastanu.'],
+    ['Jak prać FORM 01?','W 30°C, na lewej stronie, z podobnymi kolorami. Bez suszarki bębnowej — suszyć na płasko.']]]
+];
+
+const $ = (s,el=document)=>el.querySelector(s);
+const $$ = (s,el=document)=>[...el.querySelectorAll(s)];
+const zl = n => n.toLocaleString('pl-PL',{minimumFractionDigits: n%1?2:0, maximumFractionDigits:2}) + ' zł';
+const store = {
+  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+
+/* ---------- state ---------- */
+let cart = store.get('cela-cart', []);
+let pColor = 'seledyn', pSize = null, discount = 0;
+
+/* ---------- router ---------- */
+const views = $$('[data-view]');
+function route(){
+  let h = (location.hash||'').slice(1);
+  if(!views.some(v=>v.dataset.view===h)) h = 'home';
+  if(h==='zamowienie' && !cart.length) h='sklep';
+  views.forEach(v=>{ v.hidden = v.dataset.view!==h; });
+  if(h==='zamowienie') renderCheckout();
+  if(h==='form-01') renderPDP();
+  window.scrollTo({top:0,behavior:'instant'});
+  closeMenu();
+  $$('video:not([data-once])').forEach(v=>{ if(v.closest('[data-view]')?.hidden) v.pause(); else v.play?.().catch(()=>{}); });
+  if(h!=='home'){ const hv=$('#heroVid'); if(hv && !hv.paused) finishHero(); }
+}
+window.addEventListener('hashchange', route);
+
+/* ---------- header ---------- */
+const hdr = $('#hdr');
+addEventListener('scroll',()=>{ hdr.classList.toggle('scrolled', scrollY>10); stickyCheck(); },{passive:true});
+function closeMenu(){ $('#mmenu').classList.remove('open'); }
+$('#burger').onclick = ()=> $('#mmenu').classList.add('open');
+$('#mclose').onclick = closeMenu;
+
+/* ---------- featured swatches (home) ---------- */
+$$('[data-feat]').forEach(b=>b.onclick=()=>{
+  $$('[data-feat]').forEach(x=>x.setAttribute('aria-pressed', x===b));
+  const img=$('#featImg'); img.className = COLORS[b.dataset.feat].cls;
+  pColor = b.dataset.feat;
+});
+
+/* ---------- product cards ---------- */
+function card(color){
+  const c = COLORS[color];
+  return `<div class="card" role="link" tabindex="0" data-open="${color}">
+    <div class="card-img"><img src="${IMG}" class="${c.cls}" alt="FORM 01 Hoodie — ${c.name}" loading="lazy">
+      ${color==='seledyn'?'<div class="alt crop c-woman" aria-hidden="true"></div>':''}
+      <div class="quick"><button class="btn light full" data-quick="${color}" style="height:46px"><span>Szybki podgląd</span></button></div></div>
+    <div class="card-meta"><b>FORM 01 Hoodie</b><span class="p">449 zł</span></div>
+    <small>${c.name} · XS–XXL</small></div>`;
+}
+const soonCard = `<div class="card" aria-label="FORM 02 Crewneck — wkrótce"><div class="card-img soon"><span class="eyebrow" style="color:#57534D">Wiosna 2027</span><span class="display">FORM 02<br>Crew</span><span style="font-size:13px">Zapisz się na newsletter, by kupić pierwszy.</span></div>
+  <div class="card-meta"><b>FORM 02 Crewneck</b><span class="p">—</span></div><small>Wkrótce</small></div>`;
+$('#shopGrid').innerHTML = ['seledyn','kosc','grafit'].map(card).join('') + soonCard;
+document.addEventListener('click', e=>{
+  const q = e.target.closest('[data-quick]'); if(q){ e.stopPropagation(); openProduct(q.dataset.quick); return; }
+  const o = e.target.closest('[data-open]'); if(o){ openProduct(o.dataset.open); }
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Enter'){ const o=e.target.closest?.('[data-open]'); if(o) openProduct(o.dataset.open); }
+  if(e.key==='Escape'){ closeCart(); closeLb(); closeMenu(); }
+});
+function openProduct(color){ pColor = color; pSize=null; if(location.hash==='#form-01') renderPDP(); else location.hash='form-01'; window.scrollTo({top:0}); }
+
+/* ---------- PDP ---------- */
+function renderPDP(){
+  $$('#pColors .sw').forEach(b=>b.setAttribute('aria-pressed', b.dataset.color===pColor));
+  $('#colorName').textContent = COLORS[pColor].name;
+  $$('.pimg').forEach(i=>i.className='pimg '+COLORS[pColor].cls);
+  $$('.pfilter').forEach(el=>{ el.classList.remove('f-seledyn','f-kosc','f-grafit'); el.classList.add(COLORS[pColor].cls); });
+  const sold = SOLD[pColor]||[];
+  if(sold.includes(pSize)) pSize=null;
+  $('#pSizes').innerHTML = SIZES.map(s=>`<button class="size" data-size="${s}" aria-pressed="${s===pSize}" ${sold.includes(s)?'disabled aria-label="'+s+' — wyprzedane"':''}>${s}</button>`).join('');
+  $('#sizeErr').textContent = sold.length ? `Rozmiar ${sold.join(', ')} w kolorze ${COLORS[pColor].name.toLowerCase()} chwilowo wyprzedany.` : '';
+  $('#stickyMeta').textContent = `${COLORS[pColor].name}${pSize?' · '+pSize:''} · 449 zł`;
+  $('#ymal').innerHTML = Object.keys(COLORS).filter(c=>c!==pColor).map(card).join('') + soonCard;
+  renderSizeTable();
+}
+$('#pColors').onclick = e=>{ const b=e.target.closest('[data-color]'); if(!b) return; pColor=b.dataset.color; renderPDP(); };
+$('#pSizes').onclick = e=>{ const b=e.target.closest('[data-size]'); if(!b||b.disabled) return; pSize=b.dataset.size; $('#sizeErr').textContent=''; renderPDP(); };
+function addCurrent(){
+  if(!pSize){ $('#sizeErr').textContent='Wybierz rozmiar, aby dodać bluzę do koszyka.'; $('#pSizes').scrollIntoView({behavior:'smooth',block:'center'}); return; }
+  addToCart(pColor,pSize);
+}
+$('#addBtn').onclick = addCurrent; $('#stickyAdd').onclick = addCurrent;
+function stickyCheck(){
+  const sb=$('#stickyBuy'); if(!sb) return;
+  const r=$('#addBtn').getBoundingClientRect();
+  sb.classList.toggle('show', location.hash==='#form-01' && r.bottom<0);
+}
+
+/* size table */
+let unit='cm';
+function renderSizeTable(){
+  const f = v => unit==='cm' ? v : (v/2.54).toFixed(1);
+  $('#sizeTable').innerHTML = `<thead><tr><th>Rozmiar</th><th>Szerokość</th><th>Długość</th><th>Rękaw</th></tr></thead><tbody>`+
+    SIZE_CM.map(r=>`<tr><td><b>${r[0]}</b></td><td>${f(r[1])}</td><td>${f(r[2])}</td><td>${f(r[3])}</td></tr>`).join('')+`</tbody>`;
+}
+$$('[data-unit]').forEach(b=>b.onclick=()=>{ unit=b.dataset.unit; $$('[data-unit]').forEach(x=>x.setAttribute('aria-pressed',x===b)); renderSizeTable(); });
+$('#openSizes').onclick=()=>{ const d=$('#sizeAcc'); d.open=true; d.scrollIntoView({behavior:'smooth',block:'center'}); };
+$$('[data-goto-size]').forEach(a=>a.addEventListener('click',()=>setTimeout(()=>{ $('#sizeAcc').open=true; $('#sizeAcc').scrollIntoView({block:'center'}); },80)));
+
+/* lightbox */
+$('#gallery').onclick = e=>{
+  const g=e.target.closest('.g'); if(!g) return;
+  const src = g.querySelector('img,.crop').cloneNode(true);
+  $('#lbIn').replaceChildren(src); $('#lb').classList.add('open');
+};
+function closeLb(){ $('#lb').classList.remove('open'); }
+$('#lbClose').onclick=closeLb; $('#lb').onclick=e=>{ if(e.target.id==='lb') closeLb(); };
+
+/* ---------- cart ---------- */
+function save(){ store.set('cela-cart',cart); }
+function sub(){ return cart.reduce((s,i)=>s+i.qty*PRICE,0); }
+function qtyAll(){ return cart.reduce((s,i)=>s+i.qty,0); }
+function addToCart(color,size){
+  const ex = cart.find(i=>i.color===color&&i.size===size);
+  if(ex) ex.qty++; else cart.push({color,size,qty:1});
+  save(); renderCart();
+  const c=$('#cartCount'); c.classList.add('bump'); setTimeout(()=>c.classList.remove('bump'),300);
+  toast(`Dodano: FORM 01 · ${COLORS[color].name} · ${size}`);
+}
+function renderCart(){
+  const n=qtyAll(), s=sub();
+  $('#cartCount').textContent=n; $('#drCount').textContent = n?`(${n})`:'';
+  const left = Math.max(0,FREE-s);
+  $('#shipBar').innerHTML = (left? `Brakuje <b>${zl(left)}</b> do darmowej dostawy.` : `<b>Masz darmową dostawę.</b>`) + `<div class="bar"><i style="width:${Math.min(100,s/FREE*100)}%"></i></div>`;
+  $('#shipBar').hidden = !n;
+  if(!n){
+    $('#drItems').innerHTML = `<div class="empty"><svg style="width:40px;height:40px"><use href="#bag"/></svg><p>Twój koszyk jest pusty.</p><a class="btn" href="#form-01" data-close><span>Shop now</span></a></div>`;
+    $('#drFoot').innerHTML=''; return;
+  }
+  $('#drItems').innerHTML = cart.map((i,k)=>`<div class="ci">
+    <div class="ci-img"><img src="${IMG}" class="${COLORS[i.color].cls}" alt=""></div>
+    <div><div class="ci-top"><b>FORM 01 Hoodie</b><span class="price" style="font-size:14px">${zl(PRICE*i.qty)}</span></div>
+    <small>${COLORS[i.color].name} · ${i.size}</small>
+    <div class="ci-bot"><div class="qty"><button data-dec="${k}" aria-label="Zmniejsz ilość">−</button><span>${i.qty}</span><button data-inc="${k}" aria-label="Zwiększ ilość">+</button></div>
+    <button class="rm" data-rm="${k}">Usuń</button></div></div></div>`).join('');
+  $('#drFoot').innerHTML = `<div class="sum-row total"><span>Suma</span><span class="p">${zl(s)}</span></div>
+    <p style="font-size:13px;color:var(--muted)">Koszt dostawy i kody rabatowe w kolejnym kroku.</p>
+    <a class="btn full" href="#zamowienie" data-close><span>Przejdź do zamówienia</span></a>`;
+}
+$('#drawer').addEventListener('click',e=>{
+  const t=e.target.closest('button,a'); if(!t) return;
+  if(t.dataset.inc!==undefined){ cart[+t.dataset.inc].qty++; }
+  else if(t.dataset.dec!==undefined){ const i=cart[+t.dataset.dec]; i.qty--; if(i.qty<1) cart.splice(+t.dataset.dec,1); }
+  else if(t.dataset.rm!==undefined){ cart.splice(+t.dataset.rm,1); }
+  else if(t.hasAttribute('data-close')){ closeCart(); return; }
+  else return;
+  save(); renderCart();
+});
+function openCart(){ $('#drawer').classList.add('open'); $('#overlay').classList.add('open'); $('#drawer').setAttribute('aria-hidden','false'); $('#drClose').focus(); }
+function closeCart(){ $('#drawer').classList.remove('open'); $('#overlay').classList.remove('open'); $('#drawer').setAttribute('aria-hidden','true'); }
+$('#cartBtn').onclick=openCart; $('#drClose').onclick=closeCart; $('#overlay').onclick=closeCart;
+
+let tt;
+function toast(msg){ $('#toastTxt').textContent=msg; $('#toast').classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>$('#toast').classList.remove('show'),3600); }
+$('#toastBtn').onclick=()=>{ $('#toast').classList.remove('show'); openCart(); };
+
+/* ---------- checkout ---------- */
+function shipCost(){ const v=$('input[name=ship]:checked').value; return sub()-discount>=FREE?0:SHIP[v]; }
+function renderCheckout(){
+  $('#coLines').innerHTML = cart.map(i=>`<div class="co-line"><div class="ci-img" style="aspect-ratio:3/4"><img src="${IMG}" class="${COLORS[i.color].cls}" alt=""><span class="q">${i.qty}</span></div>
+    <div><b style="font-weight:600">FORM 01 Hoodie</b><br><small style="color:var(--muted)">${COLORS[i.color].name} · ${i.size}</small></div><span class="price" style="font-size:14px">${zl(PRICE*i.qty)}</span></div>`).join('');
+  const s=sub(), free = s-discount>=FREE;
+  $$('[data-ship-price]').forEach(el=>el.textContent = free?'0 zł':zl(SHIP[el.dataset.shipPrice]));
+  $('#coSub').textContent=zl(s);
+  $('#coDiscRow').hidden=!discount; $('#coDisc').textContent='−'+zl(discount);
+  const sh=shipCost(); $('#coShip').textContent = sh?zl(sh):'Gratis';
+  const tot = s-discount+sh; $('#coTotal').textContent=zl(Math.round(tot*100)/100);
+  $('#coSubmitTxt').textContent = 'Zamawiam i płacę — '+zl(Math.round(tot*100)/100);
+}
+$$('input[name=ship]').forEach(r=>r.onchange=renderCheckout);
+$('#coCodeBtn').onclick=()=>{
+  const c=$('#coCode').value.trim().toUpperCase();
+  if(c==='QUIET10'){ discount=Math.round(sub()*0.10*100)/100; toast('Kod QUIET10 dodany: −10%'); }
+  else { discount=0; toast('Ten kod nie jest aktywny. Sprawdź pisownię.'); }
+  renderCheckout();
+};
+function validate(form){
+  let ok=true;
+  $$('.inp',form).forEach(w=>{
+    const i=$('input,textarea',w); if(!i||!i.required) return;
+    let m='';
+    if(!i.value.trim()) m='To pole jest wymagane.';
+    else if(i.type==='email' && !/^\S+@\S+\.\S+$/.test(i.value)) m='Wpisz poprawny adres e-mail, np. ania@poczta.pl.';
+    else if(i.id==='coZip' && !/^\d{2}-\d{3}$/.test(i.value.trim())) m='Kod pocztowy w formacie 00-000.';
+    else if(i.type==='tel' && i.value.replace(/\D/g,'').length<9) m='Numer telefonu ma co najmniej 9 cyfr.';
+    w.classList.toggle('err',!!m); $('.msg',w).textContent=m; if(m) ok=false;
+  });
+  return ok;
+}
+$('#coForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  let ok=validate(e.target);
+  const t=$('#coTerms'); $('#termsMsg').textContent = t.checked?'':'Zaakceptuj regulamin, aby złożyć zamówienie.'; if(!t.checked) ok=false;
+  if(!ok){ $('.err, #termsMsg:not(:empty)')?.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+  const no='CL-'+String(Date.now()).slice(-6);
+  $('#orderNo').textContent='Zamówienie '+no;
+  $('#doneTxt').textContent=`Potwierdzenie wyślemy na ${$('#coEmail').value}. Paczka wyjedzie w ciągu 24 godzin roboczych.`;
+  cart=[]; discount=0; save(); renderCart(); e.target.reset();
+  location.hash='dziekujemy';
+});
+
+/* ---------- forms ---------- */
+$('#newsForm').addEventListener('submit',e=>{
+  e.preventDefault(); const v=$('#newsEmail').value;
+  if(!/^\S+@\S+\.\S+$/.test(v)){ $('#newsMsg').innerHTML='Wpisz poprawny adres e-mail, np. ania@poczta.pl.'; return; }
+  $('#newsMsg').innerHTML='<span class="form-ok">Zapisano. Twój kod na −10%: QUIET10</span>'; e.target.reset();
+});
+$('#contactForm').addEventListener('submit',e=>{
+  e.preventDefault(); if(!validate(e.target)) return;
+  $('#ctNote').innerHTML='<span class="form-ok">Wiadomość zapisana. Odpowiemy w ciągu 24 h (wersja demonstracyjna).</span>'; e.target.reset();
+});
+$$('[data-copy]').forEach(b=>b.onclick=()=>{
+  const t=b.dataset.copy;
+  const done=()=>{ b.textContent='Skopiowano'; setTimeout(()=>b.textContent='Kopiuj',1600); };
+  try{ navigator.clipboard.writeText(t).then(done).catch(()=>{ selectText(b.previousSibling); }); }catch(err){ selectText(b.previousSibling); }
+});
+function selectText(node){ try{ const r=document.createRange(); r.selectNodeContents(node.parentNode); const s=getSelection(); s.removeAllRanges(); s.addRange(r);}catch(e){} }
+
+/* ---------- FAQ ---------- */
+$('#faqList').innerHTML = FAQ.map(([h,qs])=>`<h2>${h}</h2>`+qs.map(([q,a])=>`<details class="acc"><summary>${q}</summary><div class="acc-body"><p>${a}</p></div></details>`).join('')).join('');
+
+/* ---------- hero film: plays once with sound, audio fades out, then dissolves into the still ---------- */
+const hv = $('#heroVid'), still = $('#heroStill'), hbtn = $('#heroSound'), hlbl = $('#heroSoundLbl');
+const VOL = 0.85, FADE = 1.4, DISSOLVE = 0.9;   // seconds before the end
+function heroTick(){
+  if(hv.paused) return;
+  const left = (hv.duration||4) - hv.currentTime;
+  if(!hv.muted) hv.volume = Math.max(0, Math.min(VOL, VOL * left / FADE));   // smooth fade-out of the music
+  if(left < DISSOLVE) still.classList.add('show');                              // start the dissolve into the photo
+  requestAnimationFrame(heroTick);
+}
+function finishHero(){
+  hv.pause(); still.classList.add('show');
+  hbtn.classList.remove('on'); hlbl.textContent = 'Odtwórz ponownie'; hbtn.hidden = false;
+}
+function playHero(withSound){
+  still.classList.remove('show');
+  hv.currentTime = 0; hv.muted = !withSound; hv.volume = VOL;
+  return hv.play();
+}
+hv.addEventListener('play', ()=>{ hbtn.classList.toggle('on', !hv.muted); requestAnimationFrame(heroTick); });
+hv.addEventListener('ended', finishHero);
+hbtn.addEventListener('click', e=>{ e.stopPropagation(); hbtn.hidden = true; playHero(true).catch(()=>playHero(false).catch(finishHero)); });
+function startHero(){
+  // przeglądarki często blokują dźwięk bez kliknięcia — wtedy film gra bez dźwięku, a dźwięk włącza się przy pierwszym kliknięciu
+  playHero(true).catch(()=>{
+    playHero(false).catch(finishHero);
+    hlbl.textContent = 'Włącz dźwięk'; hbtn.hidden = false;
+    const unlock = e=>{
+      ['pointerdown','keydown','touchstart'].forEach(t=>removeEventListener(t,unlock,true));
+      if(e.target.closest?.('#heroSound')) return;
+      if(!hv.paused && hv.muted){ hv.muted = false; hbtn.hidden = true; hbtn.classList.add('on'); }
+    };
+    ['pointerdown','keydown','touchstart'].forEach(t=>addEventListener(t,unlock,true));
+  });
+}
+
+renderCart(); route();
+if(!$('[data-view="home"]').hidden) startHero(); else finishHero();
+})();
+</script>
+
+</body>
+</html>
